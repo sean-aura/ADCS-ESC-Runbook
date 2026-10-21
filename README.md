@@ -15,6 +15,8 @@ Parts B and C are self-contained: they don't use any boxes from Part A.
 
 Each run creates its own evidence folder. Send all of them back.
 
+**Manual alternative:** the companion guide `ADCS_ESC_Manual_Validation.md` covers the same checks one ESC at a time, as single-line commands with what to look for in each output, which servers to run them on, and how to remediate. Use it when this runbook can't be run, to confirm a result by hand, or to re-check a single item after a fix. Its listing commands (L1–L10) give the full list of CAs, DCs, templates and accounts when a check has to be repeated on each one.
+
 **Before you start**
 
 - Log on to the Certificate Authority (CA) server you were asked to run this on, with the account you were given.
@@ -1843,6 +1845,14 @@ Every check ends in one of three states in `FINDINGS.csv`, so nothing passes or 
 - **RESOLVED** (Part D only): a manual check from one run that another run answered, for example "run Part B on this DC" once that DC's Part B zip is present.
 
 After Part D, use `CONSOLIDATED_FINDINGS.csv` and `REPORT.html` rather than the individual `FINDINGS.csv` files. The `Rating` column explains how DC results affected each dependent finding.
+
+To confirm any FINDING or MANUAL CHECK by hand, or to find how to fix it, look up its `Check` value in `ADCS_ESC_Manual_Validation.md`. Every check name has a matching section:
+
+- ESC1 to ESC17 have a section each.
+- `ESC10`, `ESC10-KDC` and `ESC10-Schannel` are all covered by the ESC10 section.
+- `CVE-2026-54121`, `CVE-2022-26923`, `CA-KEY` and `CA-AUDIT` are under "Related CA risks".
+
+Each section gives the risk, the commands to confirm it with what to look for, the servers to check, and the remediation steps.
 
 | Check | FINDING means | Raised as MANUAL CHECK when | Depends on Part B? |
 | --- | --- | --- | --- |
